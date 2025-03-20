@@ -1,0 +1,20 @@
+#+TITLE Learn Org-mode
+#+AUTHOR Eric Nantel
+#+DATE <2025-03-19 9pm>
+#+COPYRIGHT (C) 2025 Eric Nantel
+#+LICENSE [[https://github.com/ericnantel/learn-orgmode/blob/main/LICENSE]]
+#+DESCRIPTION README ORG ENGLISH
+#+CATEGORY learning
+
+* [[./fr/README-fr.org][Version Française]] Disponible
+* Prerequisites
+** Install [[https://www.gnu.org/software/emacs/download.html][GNU Emacs]]
+** Have a Git Client or git cli installed already on your machine
+** Clone this repository (replace the path if needed):
+	#+BEGIN_SRC shell
+	git clone https://github.com/ericnantel/learn-orgmode ~/repos/learn-orgmode
+	#+END_SRC
+* Learn Org-mode
+** Courses
+*** [[./org-mode-for-dummies.org][Org-mode for dummies]]
+*** [[./org-roam-for-dummies.org][Org-roam for dummies]] *Coming soon*

@@ -1,0 +1,219 @@
+#+TITLE Org-mode for dummies
+#+AUTHOR Eric Nantel
+
+_INTRO_
+
+[[https://orgmode.org][Org-mode]] is an awesome tool for personal organization, that
+can be used for task management, planning, note taking, at school,
+work or home. It was first introduced in the [[https://wikipedia.org/wiki/Project_GNU][GNU Project]] in 2003
+by [[https://staff.science.uva.nl/c.dominik][Carsten Dominik]].
+
+_EMACS_
+
+A graphical application with Org-mode built-in and tons of features.
+[[https://www.gnu.org][GNU Emacs]] was created in 1984 by [[https://wikipedia.org/wiki/Richard_Stallman][Richard Stallman]].
+It uses a programming language called [[https://wikipedia.org/wiki/Emacs_Lisp][Emacs Lisp]] (or elisp).
+
+There exists popular distributions other than GNU Emacs:
+- [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+- [[https://www.spacemacs.org][Spacemacs]]
+- [[https://prelude.emacsredux.com/en/latest][Emacs Prelude]]
+
+*Must know commands*:
+- Open file ~C-x C-f~
+- Save buffer changes to file ~C-x C-s~
+- Save all buffer changes to respective files ~C-x s~
+- Save buffer changes under file name ~C-x C-w~
+- Quit Emacs ~C-x C-c~
+- Display help options ~C-h~
+- Display help tutorial ~C-h t~
+- Display help command infos ~C-h i~
+- Display help keyboard descs ~C-h k~
+- Launch command by name ~M-x~ followed by command name, then press ~RET~
+
+_NEOVIM_
+
+A terminal application that can support Org-mode using plugins.
+Some features may not be available yet, in comparison to GNU Emacs.
+A very good plugin I have tried is [[https://github.com/nvim-orgmode/orgmode][nvim-orgmode]].
+
+_DOTFILES_
+
+In this course, I will only include minimal setup/config for Emacs.
+But you may find interesting to know, I made my [[https://github.com/ericnantel/dotfiles][dotfiles]]
+publicly available as well, but beware you may have to install extra stuff
+to have the same setup as I do.
+
+_ORG_
+
+Org-mode relies on you creating Org text files (*.org).
+Without using an Application that supports Org-mode (Emacs or Neovim),
+you will not experience the same thing and will only see a file content
+that ressembles Markdown files (*md) but slightly different.
+
+As I mentionned, Org files are simply text files, which makes them portable
+but also easy to modify when needed. Within Org-mode, you will be able to interact
+with Org file content to open external links, files or images, expand/collapse headlines,
+note taking, add tables, and much more, but most importantly tasks.
+I will explain later how we can manage task with Org-mode.
+
+*Open this file with GNU Emacs to start using Org-mode*
+
+_HEADLINES_
+
+*Expand/Collapse headlines with ~TAB~ on your keyboard*
+
+#+BEGIN_SRC
+For reference, headlines starts with asterisks (*)
+For example, followings are headlines:
+	* A
+	** B
+	*** C
+#+END_SRC
+
+Let's try to toggle headlines below:
+*** Hello
+**** World
+***** Org-mode
+****** in Emacs
+* How to write headlines?
+
+#+BEGIN_SRC
+The number of asterisks (*) tells you about the headline level
+For example:
+	* This is a level 1 headline
+	** This is a level 2 headline
+
+And those nested headlines form a 'tree' and have special properties,
+such as being able to fold/unfold them, inherit tags, and much more.
+#+END_SRC
+
+* _TABLES_
+
+Tables are a way to structure data like you would in a *.csv or 'Excel' document.
+Emacs is quite powerful that you may be able to inject functions within your Org
+file to update tables or do some calculations like 'Excel macros'.
+But this is an advanced topic we won't cover in this course..
+
+#+BEGIN_SRC
+Use the pipe character (|) to make columns.
+You may press ~TAB~ for row completion.
+For example:
+| Sprint 1	| Sprint 2	| Sprint 3	|
+| 10s		| 9.9s		| 10.3s		|
+#+END_SRC
+Results:
+| Sprint 1 | Sprint 2 | Sprint 3 |
+| 10s      | 9.9s     | 10.3s    |
+* _CODE BLOCK_
+
+Sometime we need to show code, and Org-mode supports that for most
+programming languages.
+
+#+BEGIN_SRC js
+console.log(document.html)
+#+END_SRC
+
+#+BEGIN_SRC cpp includes: iostream
+#include <iostream>
+int main(int argc, char* argv[])
+{
+	std::cout << "Hello World" << std::endl;
+	return EXIT_SUCCESS;
+}
+#+END_SRC
+
+* _BOLD, ITALIC, UNDERLINE, VERBATIM_
+#+BEGIN_SRC
+For reference, bold text starts and ends with an asterisks (*)
+For example:
+	*Avocado*
+
+For reference, italic text starts and ends with a forward slash (/)
+For example:
+	/Banana/
+
+For reference, underline text starts and ends with an underscore (_)
+For example:
+	_Orange_
+
+For reference, verbatim text starts and ends with an equal sign (=)
+For example:
+	=Golden kiwis=
+#+END_SRC
+Results: *Avocado* /Banana/ _Orange_ =Golden kiwis=
+
+* _TAGS_
+Tags are not to be misunderstood with bold or italic text,
+and are meant to be added on headlines. They are a way to filter
+headlines or .. tasks .. more on that later.
+#+BEGIN_SRC
+For reference, tags starts and ends with a colon (:)
+For example, followings are tags
+	:biology:
+	:homework:
+
+We can add multiple tags as well on headlines
+For example, you could have headlines like so:
+	* Important exercices :routines:gym:exercices
+	** Push-ups
+	** 10kgs weight x 2 times
+
+When headlines are nested, higher-level headlines inherits tags
+For example:
+	* Go to class :art:
+	** Paint art::paint:
+
+Notice the extra colon in-between art and paint. This may not be
+visible automatically in Emacs, but the * Paint headline has indeed
+inherits the :art: tag.
+
+#+END_SRC
+Results:
+**** Biology and maths :homework:
+
+* _PROPERTIES_
+Headlines or Org files may have properties and metadata.
+#+BEGIN_SRC
+To add 'meta' properties to headlines,
+see example below:
+
+**** This headline has a special property called 'category'
+:PROPERTIES:
+:CATEGORY: maths
+:END:
+#+END_SRC
+
+* _LINKS_
+Links can created for external links (website) or local files, or images.
+#+BEGIN_SRC
+To create a link use [[url]] or [[url][title]].
+#+END_SRC
+Results: [[https://google.ca]] [[https://google.ca][Google]]
+
+* _TODOS_
+TOCOMPLETE..
+
+*Must know commands*:
+TOCOMPLETE..
+
+* _ORG AGENDA_
+TOCOMPLETE..
+* _ORG CAPTURE_
+TOCOMPLETE..
+* _ORG EXPORT_
+We won't cover how to export Org files in this course, however
+you should know that Emacs fully support these formats:
+- Markdown (*.md, *.markdown)
+- PDF Documents
+- HTML
+- LaTeX
+- ODT
+And much more.
+
+* _ORG_MOBILE_
+TOCOMPLETE..
+* _ORG_PACKAGES_
+TOCOMPLETE..
+* _ALTERNATIVES_
+TOCOMPLETE..
