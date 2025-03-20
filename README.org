@@ -9,6 +9,8 @@
 * [[./fr/README-fr.org][Version Française]] Disponible
 * Prerequisites
 ** Install [[https://www.gnu.org/software/emacs/download.html][GNU Emacs]]
+** Copy (backup first !) the folder .emacs.d to ~/.emacs.d for minimal Emacs config
+** Ensure Org folder and its files, indicated in init.el file, exist on your machine
 ** Have a Git Client or git cli installed already on your machine
 ** Clone this repository (replace the path if needed):
 	#+BEGIN_SRC shell

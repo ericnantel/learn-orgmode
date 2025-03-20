@@ -9,6 +9,8 @@
 * [[../README.org][English Version]] Available
 * Prérequis
 ** Installer [[https://www.gnu.org/software/emacs/download.html][GNU Emacs]]
+** Copier (faites-vous un backup d'abord !) le dossier .emacs.d vers ~/.emacs.d pour configuration minimal Emacs
+** Assurer d'avoir le dossier ainsi que les fichiers Org, indiqués dans le fichier init.el, existent sur votre machine
 ** Avoir un Git Client ou git cli installé sur votre machine
 ** Cloner ce répertoire (remplacer le chemin au besoin):
 	#+BEGIN_SRC shell
