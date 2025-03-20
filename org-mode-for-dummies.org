@@ -315,7 +315,7 @@ There are two ways to do so, and you can even show both if you want.
 In order, to see the progression, you will need to update a subtask state.
 
 #+BEGIN_SRC
-**** TODO [/] [%] Week 2 Revision
+**** TODO [0/2] [0%] Week 2 Revision
 ***** TODO [ ] Math Revision
 ***** TODO [ ] Biology Revision
 #+END_SRC
@@ -448,12 +448,12 @@ to secure your files during transfer using secure encryption with a password (ad
 	colorschemes and dark-mode available. I like the Agenda as well. 
 	You can see your files or agenda on mobile or desktop.
 ** Mobile apps
-*** [[https://mobileorg.github.io][MobileOrg]
+*** [[https://mobileorg.github.io][MobileOrg]]
 	You can edit or create tasks on iOS simply by connecting to your cloud (Dropbox, iCloud).
 	However I encountered authentication issues (bad tokens) very quickly, and
 	the rendering of tasks is not as pretty as you would expect. I wouldn't
 	recommend for the moment.
-*** [[https://orgzly.com][Orgzly]
+*** [[https://orgzly.com][Orgzly]]
 	You can edit or create tasks on Android simply by connecting to your cloud (Dropbox, etc.).
 	I cannot give an opinion on this app, since I do not own any Android devices.
 ** Neovim Plugins
