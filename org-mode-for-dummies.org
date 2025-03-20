@@ -409,7 +409,7 @@ you should know that Emacs fully support these formats:
 - ODT
 And much more.
 
-* _ORG_MOBILE_
+* _ORG MOBILE_
 
 Org Mobile allows you to copy your Org files and agenda to your cloud.
 For instance, you would specify a local path to your Dropbox using the variable:
@@ -421,7 +421,7 @@ to secure your files during transfer using secure encryption with a password (ad
 - Push your files and agenda to Org mobile directory ~M-x org-mobile-push~
 - Pull your files from your cloud to your pull directory ~M-x org-mobile-pull~
 
-* _ORG_PACKAGES_
+* _ORG PACKAGES_
 ** [[https://github.com/integral-dw/org-bullets][org-bullets]]
 	Emacs package, available on Melpa, to display 'prettier' headlines.
 ** [[https://github.com/minad/org-modern][org-modern]]
