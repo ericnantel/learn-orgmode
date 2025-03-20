@@ -37,6 +37,9 @@ A terminal application that can support Org-mode using plugins.
 Some features may not be available yet, in comparison to GNU Emacs.
 A very good plugin I have tried is [[https://github.com/nvim-orgmode/orgmode][nvim-orgmode]].
 
+Additionaly, I would recommend adding the [[https://github.com/nvim-orgmode/org-bullets.nvim][org-bullets.nvim]] 'org-bullets' clone dependency to it.
+And [[https://github.com/chipsenkbeil/org-roam.nvim][org-roam.nvim]] 'org-roam' clone as well, in the future.
+
 _DOTFILES_
 
 In this course, I will only include minimal setup/config for Emacs.
@@ -86,6 +89,27 @@ For example:
 
 And those nested headlines form a 'tree' and have special properties,
 such as being able to fold/unfold them, inherit tags, and much more.
+#+END_SRC
+
+* _LISTS_
+
+You can add list under headlines.
+
+#+BEGIN_SRC
+Here are a few ways to create lists:
+**** Groceries
+	- Banana
+	- Soda
+	- Avocado
+	- Bread
+**** Shopping
+	1. Shoes
+	2. T-shirts
+**** Animal Studies
+	1) Elephant
+	2) Beavers
+	3) Seals
+	4) Pinguins
 #+END_SRC
 
 * _TABLES_
@@ -162,7 +186,7 @@ For example, you could have headlines like so:
 When headlines are nested, higher-level headlines inherits tags
 For example:
 	* Go to class :art:
-	** Paint art::paint:
+	** Paint :art::paint:
 
 Notice the extra colon in-between art and paint. This may not be
 visible automatically in Emacs, but the * Paint headline has indeed
@@ -191,17 +215,191 @@ To create a link use [[url]] or [[url][title]].
 #+END_SRC
 Results: [[https://google.ca]] [[https://google.ca][Google]]
 
-* _TODOS_
-TOCOMPLETE..
+* _TASK STATES_
+
+Tasks have by default 3 states:
+- None
+- To Do
+- Done
+But you can define more than that,
+like you could define Pending, InProgress, Cancelled states.
+
+#+BEGIN_SRC
+Here is a headline that has no task state:
+**** Go to gym
+
+Here is a headline that has a To Do task state:
+**** TODO Eat sandwich
+
+Here is a headline that has a Done state:
+**** DONE Eat sandwich
+
+#+END_SRC
+Results:
+**** TODO Walk 30 minutes
+
+* _TASK TIMESTAMP_
+
+Tasks can contain one or multiple timestamps.
+If there is 2 timestamps, then you would have a time range.
+Timestamps can be active or inactive.
+Timestamps are essentially a date and time that can be shown,
+scheduled, completed or referencing a birthday, etc.
+By itself, timestamps don't do anything special to your planning.
+
+#+BEGIN_SRC
+Here is a task with an active timestamp:
+**** TODO Laundry
+<2025-03-21 Sat 1pm>
+
+Here is a task with an inactive timestamp:
+**** TODO Dishwash
+[2025-03-21 Sat 4pm]
+
+#+END_SRC
+Results:
+**** TODO Recycle bottles
+	[2025-03-21 Sat]
+**** DONE Maths revision
+	<2025-03-22 Sun 5pm>
+
+* _TASKS PLANNING_
+
+In order to plan a task, you would need to schedule it or create a deadline.
+The difference between scheduled and deadline, is that you have to complete
+a task before a deadline, otherwise you failed your task.
+For instance, an exam would be a deadline, because you cannot miss it.
+When a task that was planned (scheduled or deadline) is done, then it is
+completed.
+
+#+BEGIN_SRC
+This is a scheduled task:
+**** TODO Gym class
+	SCHEDULED: <2025-03-25 Tue 1pm>
+
+This is a deadline task:
+**** TODO Chemistry Exam 1
+	DEADLINE: <2025-03-24 Mon 11am>--<2025-03-24 Mon 3pm>
+
+This is a completed deadline task:
+**** DONE Chemistry Exam 1
+	CLOSED: [2025-05-24 Mon 1pm] DEADLINE: <2025-03-24 Mon 11am><2025-03-24 Mon 3pm>
+
+#+END_SRC
+Results:
+**** TODO Gym class
+	SCHEDULED: <2025-03-25 Tue 1pm>
+**** TODO Chemistry Exam 1 (2hrs)
+	DEADLINE: <2025-03-24 Mon 3pm>
+**** DONE Chemistry Exam 1 (2hrs)
+	CLOSED: [2025-03-24 Mon 2pm] DEADLINE: <2025-03-24 Mon 3pm>
+
+* _TASK PRIORITY_
+
+Tasks can have priorities, so that you can focus on more urgent ones.
+By default, we have A, B and C as priorities. A being 'high-priority'.
+But you may, rename those priority label in the future to your needs.
+A task label is written as follow: [#A].
+
+#+BEGIN_SRC
+**** TODO [#A] Do important stuff
+**** TODO [#B] Do normal stuff
+#+END_SRC
+
+* _TASK PROGRESSION_
+
+Since headlines can have 'children', you may also define sub-tasks.
+And you can even show a progress indicator on the parent task's headline.
+There are two ways to do so, and you can even show both if you want.
+
+In order, to see the progression, you will need to update a subtask state.
+
+#+BEGIN_SRC
+**** TODO [/] [%] Week 2 Revision
+***** TODO [ ] Math Revision
+***** TODO [ ] Biology Revision
+#+END_SRC
+Results:
+**** TODO [/] [%] Week 2 Revision
+***** TODO [ ] Math Revision
+***** TODO [ ] Biology Revision
+
+* _TASK EFFORT_
+
+Task effort is an estimate you can give yourself for a task.
+It might help you better evaluate tasks in the future. It is optional.
+
+#+BEGIN_SRC
+Here is a scheduled task with a estimated effort
+**** TODO Do homework page 10-24
+	SCHEDULED: <2025-03-21 Fri 7pm>
+	:PROPERTIES:
+	:Effort: 2h
+	:END
+
+#+END_SRC
+Results:
+**** TODO Do homework page 10-24
+	SCHEDULED: <2025-03-21 Fri 7pm>
+	:PROPERTIES:
+	:Effort: 2h
+	:END:
+
+* _TASK RECURRENCE_
+
+You may define timestamps or tasks scheduled using recurrence,
+meaning they can repeat at a specific timelapse.
+
+#+BEGIN_SRC
+This is a scheduled task that repeats every 1 day starting from a specific date:
+**** TODO Revision (1-2hrs)
+	SCHEDULED: <2025-03-21 Fri +1d>
+
+This is another one for every week:
+**** TODO Weekend Badminton (1hr)
+	SCHEDULED: <2025-03-22 Sat +1w>
+
+#+END_SRC
+Results:
+**** TODO See bestfriends on weekend
+	SCHEDULED: <2025-03-22 Sat +1w>
 
 *Must know commands*:
-TOCOMPLETE..
+- Toggle expand/collapse headline 'tree' ~TAB~
+- Move cursor to previous headline ~C-c C-p~
+- Move cursor to next headline ~C-c C-n~
+- Move cursor to previous headline same level ~C-c C-b~
+- Move cursor to next headline same level ~C-c C-f~
+- Forward task state ~C-c C-t~
+- Backward task state using shift ~S-~ and left arrow key
+- Forward task state using shift ~S-~ and right arrow key
+- Backward task priority using shift ~S-~ and up arrow key
+- Forward task priority using shift ~S-~ and down arrow key
+- Activate timestamp ~C-c .~
+- Deactivate timestamp ~C-c !~
+- Schedule task ~C-c C-s~
+- Create deadline task ~C-c C-d~
+- Schedule task with effort estimate ~C-c C-x e~
+- Toggle image display ~C-c C-x C-v~
 
 * _ORG AGENDA_
-TOCOMPLETE..
+
+Org Agenda displays your planning for the week or day, shows your tasks or
+deadlines, birthdays, etc. Very helpful to stay organized.
+
+*Must know commands*:
+- Open org agenda ~C-c a a~ or ~M-x~ org-agenda ~RET~
+
 * _ORG CAPTURE_
-TOCOMPLETE..
+
+Org Capture helps you open an Org file to insert a task or a note, but can also
+create one using a template you define, which is very useful.
+
+*Must know commands*:
+- Open org capture ~C-c c~ or ~M-x~ org-capture ~RET~
+
 * _ORG EXPORT_
+
 We won't cover how to export Org files in this course, however
 you should know that Emacs fully support these formats:
 - Markdown (*.md, *.markdown)
@@ -212,8 +410,57 @@ you should know that Emacs fully support these formats:
 And much more.
 
 * _ORG_MOBILE_
-TOCOMPLETE..
+
+Org Mobile allows you to copy your Org files and agenda to your cloud.
+For instance, you would specify a local path to your Dropbox using the variable:
+~org-mobile-directory~ and it will use your ~org-agenda-files~ to copy them into
+that local cloud directory (it may also be a remote path). Org Mobile has an option
+to secure your files during transfer using secure encryption with a password (advanced).
+
+*Must know commands*:
+- Push your files and agenda to Org mobile directory ~M-x org-mobile-push~
+- Pull your files from your cloud to your pull directory ~M-x org-mobile-pull~
+
 * _ORG_PACKAGES_
-TOCOMPLETE..
+** [[https://github.com/integral-dw/org-bullets][org-bullets]]
+	Emacs package, available on Melpa, to display 'prettier' headlines.
+** [[https://github.com/minad/org-modern][org-modern]]
+	Emacs package, available on Melpa, to display 'prettier' headlines, tables, etc.
+	It is an alternative to org-bullets.
+** [[https://github.com/org-roam/org-roam][org-roam]]
+	Emacs package, available on Melpa, for note taking, inspired by
+	Zettelkasten method, this is similar to how 'Obsidian' works,
+	at the exception we are using Org files (*.org) not Markdown (*.md).
+** [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]
+	Emacs package, available on Melpa, to display your 'Second Brain'.
+	It complements your Org-roam experience.
+** [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]]
+	Emacs package, available on Melpa, to show agenda in a different way,
+	that may ressemble a little bit to 'Notion'.
+
 * _ALTERNATIVES_
-TOCOMPLETE..
+** Web apps
+*** [[https://organice.200ok.ch][Organice]]
+	Web application to display your Org file on your cloud (Dropbox, iCloud).
+	They swear to not use or store any of your data. You can modify your files
+	directly on their website and save them on your cloud. All you need is login.
+	What I like about this website, is that it displays Org files properly, has
+	colorschemes and dark-mode available. I like the Agenda as well. 
+	You can see your files or agenda on mobile or desktop.
+** Mobile apps
+*** [[https://mobileorg.github.io][MobileOrg]
+	You can edit or create tasks on iOS simply by connecting to your cloud (Dropbox, iCloud).
+	However I encountered authentication issues (bad tokens) very quickly, and
+	the rendering of tasks is not as pretty as you would expect. I wouldn't
+	recommend for the moment.
+*** [[https://orgzly.com][Orgzly]
+	You can edit or create tasks on Android simply by connecting to your cloud (Dropbox, etc.).
+	I cannot give an opinion on this app, since I do not own any Android devices.
+** Neovim Plugins
+*** [[https://github.com/nvim-neorg/neorg][Neorg]]
+	Neorg files (*.norg) use a similar syntax to Org files (*.org) but with
+	few nuances, for example links are written slightly different and metadata too.
+	It is simple to use, but it is missing an Agenda, which I think it needs.
+	The other thing I need to mention is that outside of Neovim there is no
+	other application that supports Neorg system. So let's wait until the creator of Neorg
+	makes a mobile app and we'll see then.
