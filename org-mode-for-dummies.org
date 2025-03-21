@@ -350,19 +350,22 @@ Results:
 You may define timestamps or tasks scheduled using recurrence,
 meaning they can repeat at a specific timelapse.
 
+Use  ++ instead + because that way you can update a task state for a date,
+and keep using the task for future dates, and it can update a LOGBOOK.
+
 #+BEGIN_SRC
 This is a scheduled task that repeats every 1 day starting from a specific date:
 **** TODO Revision (1-2hrs)
-	SCHEDULED: <2025-03-21 Fri +1d>
+	SCHEDULED: <2025-03-21 Fri 17:00 ++1d>
 
 This is another one for every week:
 **** TODO Weekend Badminton (1hr)
-	SCHEDULED: <2025-03-22 Sat +1w>
+	SCHEDULED: <2025-03-22 Sat 10:30 ++1w>
 
 #+END_SRC
 Results:
 **** TODO See bestfriends on weekend
-	SCHEDULED: <2025-03-22 Sat +1w>
+	SCHEDULED: <2025-03-22 Sat ++1w>
 
 *Must know commands*:
 - Toggle expand/collapse headline 'tree' ~TAB~
