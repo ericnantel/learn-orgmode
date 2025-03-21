@@ -6,6 +6,8 @@
 #+DESCRIPTION README ORG FRENCH
 #+CATEGORY apprendre
 
+[[https://youtu.be/Kk3PCMAyRX0][Cliquez ici -> Cours Complet sur YouTube !]]
+
 * [[../README.org][English Version]] Available
 * Prérequis
 ** Installer [[https://www.gnu.org/software/emacs/download.html][GNU Emacs]]
