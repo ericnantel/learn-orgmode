@@ -17,6 +17,8 @@
 (require 'org-capture)
 (require 'org-mobile)
 
+;; TODO: Replace with C-c o a like <leader>oa (action open agenda)
+
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
@@ -50,9 +52,19 @@
 (setq org-agenda-span 7)
 (setq org-agenda-start-on-weekday nil)
 (setq org-agenda-start-day "-1d")
+(setq org-agenda-start-with-log-mode t)
+;; TODO: org-agenda-custom-commands
 
 (setq org-default-notes-file (concat org-directory "/refile.org"))
-;; TODO: org-capture-templates
+(setq org-capture-templates
+	  '(("t" "Refile" entry (file (lambda () (concat org-directory "/refile.org")))
+		 "* TODO %?\n %U\n" :empty-lines 1)
+		("p" "Personal" entry (file (lambda () (concat org-directory "/personal.org")))
+		 "* TODO %?\n %U\n" :empty-lines 1)
+		("w" "Work" entry (file (lambda () (concat org-directory "/work.org")))
+		 "* TODO %?\n %U\n" :empty-lines 1)
+		("s" "School" entry (file (lambda () (concat org-directory "/school.org")))
+		 "* TODO %?\n %U\n" :empty-lines 1)))
 
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 (setq org-mobile-use-encryption nil)
