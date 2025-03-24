@@ -316,13 +316,13 @@ In order, to see the progression, you will need to update a subtask state.
 
 #+BEGIN_SRC
 **** TODO [0/2] [0%] Week 2 Revision
-***** TODO [ ] Math Revision
-***** TODO [ ] Biology Revision
+***** TODO Math Revision
+***** TODO Biology Revision
 #+END_SRC
 Results:
 **** TODO [/] [%] Week 2 Revision
-***** TODO [ ] Math Revision
-***** TODO [ ] Biology Revision
+***** TODO Math Revision
+***** TODO Biology Revision
 
 * _TASK EFFORT_
 
