@@ -1,5 +1,5 @@
 ;; Author Eric Nantel
-;; https://github.com/ericnantel/learn-org/blob/main/.emacs.d/init.el
+;; https://github.com/ericnantel/learn-orgmode/blob/main/.emacs.d/init.el
 
 ;; package-management
 (custom-set-variables '(package-archives
