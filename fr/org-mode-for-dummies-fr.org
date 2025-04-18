@@ -1,0 +1,477 @@
+#+TITLE Org-mode pour les nuls
+#+AUTHOR Eric Nantel
+
+_INTRO_
+
+[[https://orgmode.org][Org-mode]] est un super outil d'organisation personnelle
+pour la gestion de tâches, planification, prise de notes, pour
+l'école, le travail ou la maison, entre autre. Ça a été d'abord
+introduit dans le [[https://wikipedia.org/wiki/Project_GNU][Projet GNU]] en 2003
+par [[https://staff.science.uva.nl/c.dominik][Carsten Dominik]].
+
+_EMACS_
+
+Une application graphique avec Org-mode intégré par défaut
+avec une multitude de fonctionnalités.
+[[https://www.gnu.org][GNU Emacs]] fut créé 1984 par [[https://wikipedia.org/wiki/Richard_Stallman][Richard Stallman]].
+Ça utilise un language de programmation appelé [[https://wikipedia.org/wiki/Emacs_Lisp][Emacs Lisp]] (ou elisp).
+
+Il existe d'autres distributions populaires (variantes) de GNU Emacs:
+- [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+- [[https://www.spacemacs.org][Spacemacs]]
+- [[https://prelude.emacsredux.com/en/latest][Emacs Prelude]]
+
+*Commandes à connaître*:
+- Ouvrir fichier ~C-x C-f~
+- Sauvegarder les changements d'un tampon (buffer) vers fichier ~C-x C-s~
+- Sauvegarder tous les changements des tampons (buffers) vers fichiers respectifs ~C-x s~
+- Sauvegarder les changements d'un tampon (buffer) sous un nom de fichier ~C-x C-w~
+- Quitter Emacs ~C-x C-c~
+- Afficher les options avec l'aide ~C-h~
+- Afficher le tutoriel avec l'aide ~C-h t~
+- Afficher les informations des commandes avec l'aide ~C-h i~
+- Afficher les descriptions des touches du clavier avec l'aide ~C-h k~
+- Démarrer une commande avec ~M-x~ suivi du nom de cette commande, puis appuyer Entrée ~RET~
+
+_NEOVIM_
+
+Une application terminal (ou console) qui peut supporter Org-mode avec de(s) plugin(s).
+Certaines fonctionnalités ne sont toujours pas disponible, toutefois, en comparaison de GNU Emacs.
+Un excellent plugin que j'ai personnellement essayé est [[https://github.com/nvim-orgmode/orgmode][nvim-orgmode]].
+
+Additionnellement, je recommende d'ajouter le plugin suivant pour complémenter : [[https://github.com/nvim-orgmode/org-bullets.nvim][org-bullets.nvim]] qui est un 'clone' de 'org-bullets'.
+Ainsi que [[https://github.com/chipsenkbeil/org-roam.nvim][org-roam.nvim]] qui est un 'clone' de 'org-roam', dans le futur.
+
+_DOTFILES_
+
+Dans ce cours, je vais inclure une configuration minimale pour Emacs.
+Mais pour les interressés, j'ai mis publiquement mes 'dotfiles' [[https://github.com/ericnantel/dotfiles][dotfiles]]
+Cependant, il est possible que vous ayez à installer d'avantage d'outils pour utiliser ma configuration avancée.
+
+_ORG_
+
+Le fonctionnement d'Org-mode tourne autour des fichiers Org (*.org).
+Mais il vous faut une application qui supporte Org-mode (Emacs ou Neovim)
+pour visualiser la même expérience, sinon ces fichiers non rien de spécial
+dans un éditeur de texte, mis à part qu'ils ressemblent aux fichiers Markdown (*.md).
+
+Grâce à Org-mode, vous serez en mesure d'afficher ou interagir avec du contenu à
+l'intérieur de ces fichiers, tel que des liens externes, fichiers, images, tableau, graphes.
+Ainsi que prendre des notes, et bien plus. Nous verrons plus en détail, ci-dessous.
+
+*Veuillez ouvrir ce fichier avec GNU Emacs pour commencer à utiliser Org-mode*
+
+_HEADLINES_
+
+*Afficher/Cacher les 'headlines' avec ~TAB~ sur votre clavier*
+
+#+BEGIN_SRC
+For reference, headlines starts with asterisks (*)
+For example, followings are headlines:
+	* A
+	** B
+	*** C
+#+END_SRC
+
+Essayons avec les 'headlines' ci-dessous:
+*** Hello
+**** World
+***** Org-mode
+****** in Emacs
+* Comment écrire des 'headlines'?
+
+#+BEGIN_SRC
+Le nombre d'astérisques (*) vous informe de son niveau dans la hierarchie.
+Par exemple:
+	* Ceci est un 'headline' niveau 1
+	** Ceci est un 'headline' niveau 2
+
+Ces 'headlines' embriqués constituent un 'arbre' avec une hierarchie,
+ayant des propriétés spéciales, comme pouvoir afficher/cacher ou l'héritage de 'tags'.
+#+END_SRC
+
+* _LISTES_
+
+You pouvez ajouter des listes aux 'headlines'.
+
+#+BEGIN_SRC
+Voici plusieurs façons de créer des listes:
+**** Épicerie
+	- Banane
+	- Boisson gazeuse
+	- Avocat
+	- Pain
+**** Magasinage
+	1. Souliers
+	2. Chandails
+**** Étude des animaux
+	1) Elephant
+	2) Castor
+	3) Phoques
+	4) Pinguins
+#+END_SRC
+
+* _TABLEAUX_
+
+Les tableaux vous permettent de structurer vos données comme vous le feriez avec
+un fichier *.csv ou un document 'Excel'. Emacs est assez puissant qu'il est même
+possible d'injecter du code à l'intérieur de vos fichiers Org pour effectuer des
+opérations ou calculs sur vos tableaux, bien évidemment ceci est un sujet avancé,
+que nous ne verrons pas dans ce cours.
+
+#+BEGIN_SRC
+Utilisez le charactère suivant (|) pour créer des colonnes.
+Vous pouvez aussi appuyer ~TAB~ pour compléter des rangées.
+Par exemple:
+| Sprint 1	| Sprint 2	| Sprint 3	|
+| 10s		| 9.9s		| 10.3s		|
+#+END_SRC
+Resultats:
+| Sprint 1 | Sprint 2 | Sprint 3 |
+| 10s      | 9.9s     | 10.3s    |
+* _BLOC DE CODE_
+
+Parfois, il vous faut afficher du code et Org-mode supporte la plupart des languages de programmation.
+
+#+BEGIN_SRC js
+console.log(document.html)
+#+END_SRC
+
+#+BEGIN_SRC cpp includes: iostream
+#include <iostream>
+int main(int argc, char* argv[])
+{
+	std::cout << "Hello World" << std::endl;
+	return EXIT_SUCCESS;
+}
+#+END_SRC
+
+* _GRAS, ITALIQUE, SOUSLIGNE, VERBATIM_
+#+BEGIN_SRC
+Pour reference, le texte gras débute et se termine avec un astérisque (*)
+Par exemple:
+	*Avocat*
+
+Pour reference, le texte italique débute et se termine avec une barre oblique (/)
+Par exemple:
+	/Banane/
+
+Pour reference, le texte sous-ligné débute et se termine avec le charactère 'underscore' (_)
+Par exemple:
+	_Orange_
+
+Pour reference, le texte verbatim débute et se termine avec le symbole 'égale' (=)
+Par exemple:
+	=Kiwis dorés=
+#+END_SRC
+Resultats: *Avocat* /Banane/ _Orange_ =Kiwis dorés=
+
+* _TAGS_
+Les 'tags' (étiquettes) peuvent être ajoutés aux 'headlines'.
+Ils peuvent vous permettre d'utiliser des filtres, pour vos tâches,
+entre autre.
+#+BEGIN_SRC
+For reference, tags starts and ends with a colon (:)
+For example, followings are tags
+	:biology:
+	:homework:
+
+We can add multiple tags as well on headlines
+For example, you could have headlines like so:
+	* Important exercices :routines:gym:exercices
+	** Push-ups
+	** 10kgs weight x 2 times
+
+When headlines are nested, higher-level headlines inherits tags
+For example:
+	* Go to class :art:
+	** Paint :art::paint:
+
+Notice the extra colon in-between art and paint. This may not be
+visible automatically in Emacs, but the * Paint headline has indeed
+inherits the :art: tag.
+
+#+END_SRC
+Resultats:
+**** Biologie et mathématiques :devoir:
+
+* _PROPERTIES_
+Les 'headlines' et les fichiers Org peuvent avoir des 'properties' and du 'metadata' (meta-données).
+#+BEGIN_SRC
+Pour ajouter des 'meta properties' à un headline, voir l'exemple ci-dessous:
+
+**** Ce 'headline' a un propriété spéciale 'category' avec la valeur 'maths'
+:PROPERTIES:
+:CATEGORY: maths
+:END:
+#+END_SRC
+
+* _LINKS_
+Vous pouvez écrire des liens externes (site web) ou vers des fichiers locaux ou images:
+#+BEGIN_SRC
+Pour créer un lien, vous avez le choix d'utiliser [[url]] ou [[url][titre]].
+#+END_SRC
+Resultats: [[https://google.ca]] [[https://google.ca][Google]]
+
+* _ÉTÂTS DE TÂCHES_
+
+Les tâches ont 3 étâts par défaut:
+- Aucun (None)
+- À faire (Todo)
+- Fait (Done)
+Il est possible d'ajouter davantage d'étâts comme par exemple,
+En suspens (Pending), En progrès (InProgress), Annulé (Cancelled).
+
+#+BEGIN_SRC
+Voici un 'headline' sans aucun étât de tâche:
+**** Aller au gym
+
+Voici un 'headline' avec une tâche à faire:
+**** TODO Manger un sandwich
+
+Voici un 'headline' avec une tâche complétée:
+**** DONE Manger un sandwich
+#+END_SRC
+Resultats:
+**** TODO Walk 30 minutes
+
+* _DATE ET HEURE DE TÂCHES_
+
+Les tâches peuvent contenir des dates et heures (timestamp).
+Celles-ci peuvent être actives ou pas. Généralement, celles-ci
+serviront aux tâches lorsqu'elles sont 'planifiées'.
+
+#+BEGIN_SRC
+Voici une tâche avec une date et heure active:
+**** TODO Buanderie
+<2025-03-21 Sat 1pm>
+
+Voici une tâche avec une date et heure non-active:
+**** TODO Vaisselle
+[2025-03-21 Sat 4pm]
+
+#+END_SRC
+Resultats:
+**** TODO Recycler/Consigner bouteilles
+	[2025-03-21 Sat]
+**** DONE Révision des mathématiques
+	<2025-03-22 Sun 5pm>
+
+* _PLANIFICATION DE TÂCHES_
+
+Afin de planifier une tâche, vous devez trouver un horaire ou y assigner un 'deadline'.
+Sachez qu'un 'deadline' veut dire que vous devez accomplir/compléter une tâche avant que
+vous n'atteigniez la date et heure finale; sinon vous avez échouez votre tâche.
+Sinon pas d'échéancier, simplement avec un horaire, ne vous puniera pas si la date et heure excède.
+Que ce soit avec un horaire ou un échéancier (deadline), vous devez ajouter une date et heure, avec le
+calendrier Emacs ou manuellement. Cela permettra à Org-mode d'ajouter vos tâches ou
+évènements (anniversaire, rdv, etc.) à un agenda que vous pouvez consulter.
+
+#+BEGIN_SRC
+Ceci est une tâche planifiée avec un horaire:
+**** TODO classe de gym
+	SCHEDULED: <2025-03-25 Tue 1pm>
+
+Ceci est une tâche planifiée avec un échéancier (deadline):
+**** TODO Exam 1 de chimie
+	DEADLINE: <2025-03-24 Mon 11am>--<2025-03-24 Mon 3pm>
+
+Ceci est une tâche planifiée et complétée à temps avec un échéancier (deadline):
+**** DONE Exam 1 de chimie
+	CLOSED: [2025-05-24 Mon 1pm] DEADLINE: <2025-03-24 Mon 11am><2025-03-24 Mon 3pm>
+
+#+END_SRC
+Resultats:
+**** TODO classe de gym
+	SCHEDULED: <2025-03-25 Tue 1pm>
+**** TODO Exam 1 de chimie (2hrs)
+	DEADLINE: <2025-03-24 Mon 3pm>
+**** DONE Exam 1 de chimie (2hrs)
+	CLOSED: [2025-03-24 Mon 2pm] DEADLINE: <2025-03-24 Mon 3pm>
+
+* _PRIORITÉ DE TÂCHES_
+
+Les tâches peuvent avoir une priorité, de sorte que vous vous concentrez sur les plus urgentes.
+Par défaut, nous avons les priorités A, B et C (A étant la plus haute priorité).
+Mais vous pourriez renommer ces 'étiquettes' de priorités (ne pas confondre avec les 'tags').
+Pour ajouter une tâche, vous pourriez manuellement écrire [#A] après l'étât de la tâche.
+
+#+BEGIN_SRC
+**** TODO [#A] Un truc très important
+**** TODO [#B] Un truc normal à faire
+#+END_SRC
+
+* _PROGRESSION DE TÂCHES_
+
+Étant donné que les 'headlines' peuvent avoir des 'enfants', you pourriez ajouter une progression
+pour afficher combien de 'sous-tâches' sont complétées. La progression est simplement un indicateur
+qui peut s'écrire de 2 façons. Pour la progression se mette à jour, vous devrez mettre à jour une
+'sous-tâche'.
+
+#+BEGIN_SRC
+**** TODO [0/2] [0%] Revision Semaine 2
+***** TODO Revision des mathématiques
+***** TODO Revision de biologie
+#+END_SRC
+Resultats:
+**** TODO [/] [%] Revision Semaine 2
+***** TODO Math Revision des mathématiques
+***** TODO Biology Revision de biologie
+
+* _EFFORT DE TÂCHES_
+
+Il est possible d'ajouter un estimé d'effort pour un tâche.
+Cela pourrait vous permettre de mieux evaluer vos tâches dans le futur.
+Cela est optionel comme ajoût.
+
+#+BEGIN_SRC
+Voici une tâche planifiée avec un estimé d'effort de 2 heures:
+**** TODO Devoir de programmation Java pages 10-24
+	SCHEDULED: <2025-03-21 Fri 7pm>
+	:PROPERTIES:
+	:Effort: 2h
+	:END
+
+#+END_SRC
+Resultats:
+**** TODO Devoir de programmation Java pages 10-24
+	SCHEDULED: <2025-03-21 Fri 7pm>
+	:PROPERTIES:
+	:Effort: 2h
+	:END:
+
+* _RÉCCURENCE OU RENOUVELLEMENT DE TÂCHES_
+
+Vous pouvez définir une date et heure récurrente pour une tâche,
+de sorte qu'elle se renouvelle pour la prochaine fois, lorsque vous
+l'a complétée. Il vous faudra définir le lapse de temps entre chaque
+renouvellement et utiliser les '++' (n'utilisez pas '+').
+La différence avec '+' c'est que votre tâche se répète dans votre agenda jusqu'a complétion,
+mais les '++' vous permettront de refaire votre tâche pour la prochaine fois.
+De plus, vous pourrez maintenir un journal d'entrée (Logbook) avec votre tâche.
+
+#+BEGIN_SRC
+Ceci est une tâche planifiée qui pourra se renouveller à chaque jour:
+**** TODO Revision (1-2hrs)
+	SCHEDULED: <2025-03-21 Fri 17:00 ++1d>
+
+En voici une autre qui peut se renouveller chaque samedi:
+**** TODO Weekend Badminton (1hr)
+	SCHEDULED: <2025-03-22 Sat 10:30 ++1w>
+
+#+END_SRC
+Resultats:
+**** TODO Voir mes besties le weekend
+	SCHEDULED: <2025-03-22 Sat ++1w>
+
+*Commmandes à connaître*:
+- Afficher/Cacher un 'arbre de headlines' ~TAB~
+- Déplacer curseur au précédent 'headline' ~C-c C-p~
+- Déplacer curseur au prochain 'headline' ~C-c C-n~
+- Déplacer curseur au précédent 'headline' de même niveau ~C-c C-b~
+- Déplacer curseur au prochain 'headline' de même niveau ~C-c C-f~
+- Modifier l'étât d'une tâche vers l'avant (todo -> done) ~C-c C-t~
+- Modifier l'étât d'une tâche vers l'arrière (done -> todo) avec la touche Shift ~S-~ et la touche flèche vers la gauche
+- Modifier l'étât d'une tâche vers l'avant (todo -> done) avec la touche Shift ~S-~ et la touche flèche vers la droite
+- Modifier la priorité d'une tâche vers l'arrière (normal -> low) avec la touche Shift ~S-~ et la touche flèche vers le haut
+- Modifier la priorité d'une tâche vers l'avant (normal -> high) avec la touche Shift ~S-~ et la touche flèche vers le bas
+- Activer une date et heure sous un 'headline' ~C-c .~
+- Désactiver une date et heure sous un 'headline' ~C-c !~
+- Planifier un horaire à une tâche ~C-c C-s~
+- Planifier un échéancier à une tâche ~C-c C-d~
+- Planifier un estimé d'effort à une tâche ~C-c C-x e~
+- Activer/Désactiver l'affichage d'une image ~C-c C-x C-v~
+
+* _ORG AGENDA_
+
+L'agenda Org affiche votre planning de la semaine ou de la journée,
+comme les évènements avec date et heure, les rendez-vous, les échéances.
+Très utile pour demeurer organisé(e).
+
+*Commandes à connaître*:
+- Ouvrir l'agenda Org ~C-c a a~ ou ~M-x~ org-agenda ~RET~
+
+* _ORG CAPTURE_
+
+La capture Org vous aide à ouvrir un fichier Org pour y insérer une tâche ou une note.
+Mais vous pouvez aussi créer des 'templates' lorsque vous créer une nouvelle 'entrée'
+que ce soit une note, pour votre 'journal' ou autre.
+Très pratique pour insérer rapidement sans ouvrir manuellement un fichier spécifique.
+
+*Commandes à connaître*:
+- Ouvrir la capture Org ~C-c c~ ou ~M-x~ org-capture ~RET~
+
+* _ORG EXPORT_
+
+Nous n'allons pas couvrir comment exporter vos fichier Org dans ce cours,
+toutefois sachez qu'Emacs supporte ces formats:
+- Markdown (*.md, *.markdown)
+- PDF Documents
+- HTML
+- LaTeX
+- ODT
+Et bien plus.
+
+* _ORG MOBILE_
+
+Org Mobile vous permet de copier vos fichier Org ainsi que votre agenda vers le 'cloud'.
+Par exemple, vous pouvez spécifier un chemin local vers votre Dropbox afin de synchonizer,
+en utilisant la variable: ~org-mobile-directory~ dans votre configuration Emacs et donc
+vos fichiers Org qui se trouvent dans le chemin défini dans la variable ~org-agenda-files~
+seront copier vers l'emplacement de votre répertoire local ou à distance 'cloud' (Dropbox, iCloud, OneDrive, GoogleDrive, etc..).
+Org Mobile a une option pour sécuriser le transfert de vos fichiers vers le 'cloud' de
+façon sécuritaire avec encryption et mot de passe (avancé).
+L'idée derrière cela, est de pouvoir accéder vos fichiers et agenda sur une autre machine,
+ou appareil (pc ou smartphone).
+
+*Commandes à connaître*:
+- Pousser vos fichiers Org et agenda vers le chemin de votre 'cloud' ~M-x org-mobile-push~
+- Tirer vos fichiers de votre 'cloud' vers votre chemin local ~M-x org-mobile-pull~
+
+* _PAQUETS ORG_
+** [[https://github.com/integral-dw/org-bullets][org-bullets]]
+	Paquet Emacs, disponible sur Melpa, pour afficher de 'beaux headlines'.
+** [[https://github.com/minad/org-modern][org-modern]]
+	Paquet Emacs, disponible sur Melpa, pour afficher de 'beaux headlines, tableaux, etc.'.
+	Une alternative au paquet 'org-bullet'.
+** [[https://github.com/org-roam/org-roam][org-roam]]
+	Paquet Emacs, disponible sur Melpa, pour prise de notes, inspiré par la
+	méthodologie Zettelkasten, similaire à Obsidian, excepté qu'on utilise
+	des fichiers Org (*.org) et non Markdown (*.md) comme dans Obsidian.
+** [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]
+	Paquet Emacs, disponible sur Melpa, pour afficher votre deuxième cerveau
+	(Second Brain like in Obsidian). Cela complémente votre expérience
+	Org-roam.
+** [[https://github.com/alphapapa/org-super-agenda][org-super-agenda]]
+	Paquet Emacs, disponible sur Mela, pour afficher votre agenda différemment,
+	et ressemble un peu plus à Notion.
+
+* _ALTERNATIVES_
+** Applications web
+*** [[https://organice.200ok.ch][Organice]]
+	Application web pour afficher vos fichier Org et votre agenda qui
+	se trouvent dans votre 'cloud' (Dropbox, iCloud, etc.) directement
+	à partir de votre moteur de recherche (browser). Vous pouvez aussi
+	modifier vos fichiers et les synchronizer avec votre 'cloud'. De plus,
+	vous pouvez utiliser un 'colorscheme' et même afficher en mode 'dark'.
+	Je recommende fortement. Fonctionne aussi sur votre appareil mobile.
+** Applications mobiles
+*** [[https://mobileorg.github.io][MobileOrg]]
+	Vous pouvez mettre à jour ou créer des tâches sur iOS (iPhone, iPad)
+	en vous connectant à votre 'cloud' (Dropbox, iCloud, etc.).
+	Toutefois, problèmes d'authentification persistents, un affichage
+	Org-mode inférieur et manque énormément de fonctionnalités.
+	Je ne peux pas recommender pour l'instant.
+*** [[https://orgzly.com][Orgzly]]
+	Vous pouvez mettre à jour ou créer des tâches sur Android en vous
+	connectant à votre 'cloud', par contre je ne peux commenter puisque
+	je n'ai pas pu tester sur ce genre d'appareil mobile jusqu'à présent.
+** Plugins Neovim
+*** [[https://github.com/nvim-neorg/neorg][Neorg]]
+	Les fichiers Neorg (*.norg) utilisent une syntaxe très similaire à
+	Org-mode, mais avec quelques nuances (meta-données, liens externes).
+	Simple d'utilisation, mais incomplet (pas d'agenda, mais vous pouvez utiliser un 'journal').
+	Mais son principal défaut, c'est son accessibilité (seulement disponible sur Neovim) et
+	incompatible avec aucune autre application, pour l'instant. Attendons que le
+	créateur de Neorg créé une application mobile, et on verra par la suite.
+	Mais ça a du potentiel comme alternative à Org-mode (ou Markdown).

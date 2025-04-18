@@ -29,11 +29,11 @@ There exists popular distributions other than GNU Emacs:
 - Display help tutorial ~C-h t~
 - Display help command infos ~C-h i~
 - Display help keyboard descs ~C-h k~
-- Launch command by name ~M-x~ followed by command name, then press ~RET~
+- Launch command with ~M-x~ followed by command name, then press Enter ~RET~
 
 _NEOVIM_
 
-A terminal application that can support Org-mode using plugins.
+A terminal (or console) application that can support Org-mode using plugins.
 Some features may not be available yet, in comparison to GNU Emacs.
 A very good plugin I have tried is [[https://github.com/nvim-orgmode/orgmode][nvim-orgmode]].
 
@@ -45,14 +45,14 @@ _DOTFILES_
 In this course, I will only include minimal setup/config for Emacs.
 But you may find interesting to know, I made my [[https://github.com/ericnantel/dotfiles][dotfiles]]
 publicly available as well, but beware you may have to install extra stuff
-to have the same setup as I do.
+because I use a more advanced configuration than this course, in my workflow.
 
 _ORG_
 
 Org-mode relies on you creating Org text files (*.org).
 Without using an Application that supports Org-mode (Emacs or Neovim),
 you will not experience the same thing and will only see a file content
-that ressembles Markdown files (*md) but slightly different.
+that ressembles Markdown files (*.md) but slightly different.
 
 As I mentionned, Org files are simply text files, which makes them portable
 but also easy to modify when needed. Within Org-mode, you will be able to interact
